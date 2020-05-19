@@ -10,8 +10,8 @@ const Search = () => {
   const [state, setState] = useState({
     searchText: "",
     amount: 15,
-    apiUrl: "https://pixabay.com/api",
-    apiKey: "YOUR_KEY",
+    apiUrl: process.env.REACT_APP_API_URL,
+    apiKey: process.env.REACT_APP_API_KEY,
     images: [],
   });
 
@@ -23,6 +23,7 @@ const Search = () => {
     const results = await axios.get(
       `${state.apiUrl}/?key=${state.apiKey}&q=${state.searchText}&image_type=photo&per_page=${state.amount}&safesearch=false`
     );
+
     setState({ ...state, images: results.data.hits });
   };
 
